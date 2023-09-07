@@ -1,0 +1,15 @@
+.header {
+    background-color: #EFEFEF;
+    margin-bottom: 20px;
+    padding: 15px 0;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+a.logo.hover {
+    cursor: pointer;
+}

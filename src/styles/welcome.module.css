@@ -1,0 +1,15 @@
+.main {
+    display: flex;
+    justify-content: space-between;
+    padding: 50px;
+}
+
+.description {
+    max-width: 50%;
+    margin-right: 80px;
+}
+
+.linkToSignIn {
+    align-items: center;
+    margin: auto 0 auto auto;
+}
