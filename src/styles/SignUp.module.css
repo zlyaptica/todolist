@@ -1,0 +1,71 @@
+.input {
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+.input::placeholder {
+    font-style: italic;
+    font-weight: 200;
+    font-size: 18px;
+    line-height: 21px;
+}
+
+.button {
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+
+    color: #000000;
+    text-transform: uppercase;
+    border: 0;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.signUp {
+    /*margin-top: 250px;*/
+    text-align: center;
+    position: relative;
+}
+
+.wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.header {
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 42px;
+    color: #000000;
+    margin-bottom: 30px;
+}
+
+.input {
+    margin-bottom: 20px;
+    width: 400px;
+    height: 25px;
+}
+
+.signUpButton {
+    width: 398px;
+    height: 50px;
+    margin-bottom: 0;
+}
+
+@media (max-width: 991px) {
+    .wrapper {
+        max-width: 500px;
+    }
+}
+
+@media (max-width: 781px) {
+
+    .wrapper {
+        max-width: 80%;
+    }
+}
+
+@media (max-width: 480px) {
+}
