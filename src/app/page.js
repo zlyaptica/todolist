@@ -7,10 +7,11 @@ import {useState} from "react";
 import {Signin} from "@/components/Signin";
 import {SignUp} from "@/components/SignUp";
 
+
 export default function Home() {
     const [SigninPopupActive, setPopupSigninActive] = useState(false)
     const [SignUpPopupActive, setPopupSignUpActive] = useState(false)
-    const isAuthenticatedUser = false
+    const isAuthenticatedUser = true
     return (
         <MainContainer isAuthenticatedUser={isAuthenticatedUser}>
             <main className={styles.main}>
