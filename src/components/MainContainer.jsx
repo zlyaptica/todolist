@@ -1,18 +1,14 @@
 import {Header} from "@/components/Header";
-import Head from "next/head";
+import styles from "./../styles/mainContainer.module.css"
 
 const MainContainer = ({children, isAuthenticatedUser}) => {
     return (
-        <>
-            <Head>
-                <title>Добро пожаловать!</title>
-            </Head>
-
+        <div className={styles.mainContainer}>
             <Header isAuthenticatedUser={isAuthenticatedUser}/>
             <div>
                 {children}
             </div>
-        </>
+        </div>
     )
 }
 

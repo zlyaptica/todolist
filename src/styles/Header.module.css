@@ -4,6 +4,10 @@
     padding: 15px 0;
 }
 
+.wrapper {
+    max-width: 1100px;
+}
+
 .info {
     display: flex;
     justify-content: space-between;

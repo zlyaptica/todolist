@@ -4,6 +4,11 @@
     padding: 50px;
 }
 
+.wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
 .description {
     max-width: 50%;
     margin-right: 80px;

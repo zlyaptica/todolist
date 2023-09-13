@@ -1,11 +1,11 @@
 'use client'
 
 import {SwitchType} from "@/components/SwitchType";
-import GanttCharts from "@/app/GanttCharts/page";
-import Canban from "@/app/Canban/page";
 import {useState} from "react";
 import {MainContainer} from "@/components/MainContainer";
-import styles from '../../styles/project.module.css'
+import styles from '../../styles/Project.module.css'
+import {GanttChart} from "@/components/GanttChart";
+import {Canban} from "@/components/Canban";
 
 export default function Project() {
     const [type, setType] = useState("Gantt")
@@ -15,7 +15,7 @@ export default function Project() {
                 <SwitchType setType={setType} type={type}/>
             </div>
             <div>
-                {type === "Gantt" ? <GanttCharts/> : <Canban/>}
+                {type === "Gantt" ? <GanttChart/> : <Canban/>}
             </div>
         </MainContainer>
     )
