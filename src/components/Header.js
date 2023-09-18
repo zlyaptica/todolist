@@ -1,7 +1,8 @@
+"use client"
 import Link from "next/link";
 import styles from "../styles/Header.module.css"
-import logo from "../img/ToDoList.svg"
-import profileIco from "../img/ProfileIco.svg"
+import logo from "../../public/ToDoList.svg"
+import profileIco from "../../public/ProfileIco.svg"
 import Image from "next/image";
 import {useState} from "react";
 import {FallOutMenu} from "@/components/FallOutMenu";
