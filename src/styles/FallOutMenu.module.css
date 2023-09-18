@@ -1,0 +1,20 @@
+/*.меню можно из попапа взять на доработку пока так*/
+
+.menuContent {
+    position: absolute;
+    top: 75px;
+    padding: 10px;
+    align-items: center;
+    border-radius: 12px;
+    background-color: #fff;
+    border: 1px solid black;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: 0.4s all;
+}
+
+.menuContent.active {
+    transform: scale(1);
+    opacity: 1;
+    visibility: visible;
+}
