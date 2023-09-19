@@ -8,20 +8,20 @@ export default async function handler(req, res)
     {
         await client.connect();
         const params = req.query.params;
-        const nickname = params[0];
-        const password = params[1];
-        const user_info = await client.db('ToDoListApp').collection('Users').findOne({ Nickname: nickname, Password: password });
+        const doer = params[0];
+        const name = params[1];
+        const inserted = await client.db('ToDoListApp').collection('Boards').insertOne({ Name: name, Tasks: {}, States: {}, Doers: {doer} });
     
-        if (!user_info)
+        if (!inserted)
         {
-          return res.status(401).json({ message: 'There is no such user here' });
+          return res.status(503).json({ message: 'Board adding error' });
         }
         else
         {
-            return res.status(302).json(user_info);
+            return res.status(201).json({ message: 'New board added' });
         } 
     }
-        catch (error)
+      catch (error)
     {
         return res.status(500).json({ message: error.toString() });
     }

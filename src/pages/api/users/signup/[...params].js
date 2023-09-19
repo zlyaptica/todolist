@@ -1,7 +1,7 @@
 import { MongoClient } from 'mongodb';
 
 export default async function handler(req, res) {
-    const client = new MongoClient(process.env.MONGODB_URI, { });
+    const client = new MongoClient(process.env.MONGODB_URI);
 
     try
     {
@@ -20,10 +20,13 @@ export default async function handler(req, res) {
         {
             return res.status(201).json({ message: 'Successful sign up' });
         } 
-
-      }
+    }
       catch (error)
-      {
+    {
         return res.status(500).json({ message: error.toString() });
-      }
+    }
+      finally
+    {
+        client.close();
+    }
 }
