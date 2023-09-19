@@ -1,21 +1,16 @@
-'use client'
-
-import {SwitchType} from "@/components/SwitchType";
-import {useState} from "react";
 import {MainContainer} from "@/components/MainContainer";
-import styles from '../../styles/Project.module.css'
-import {GanttChart} from "@/components/GanttChart";
 import {Canban} from "@/components/Canban";
+import styles from "./../../styles/Project.module.css"
 
 export default function Project() {
-    const [type, setType] = useState("Gantt")
+    const isAuthenticatedUser = true
     return (
-        <MainContainer>
-            <div className={styles.switchType}>
-                <SwitchType setType={setType} type={type}/>
-            </div>
-            <div>
-                {type === "Gantt" ? <GanttChart/> : <Canban/>}
+        <MainContainer isAuthenticatedUser={isAuthenticatedUser}>
+            <div className={styles.project}>
+                <div className={styles.boardHeader}>
+                    <h1 >Доска Канбан</h1>
+                </div>
+                <Canban/>
             </div>
         </MainContainer>
     )

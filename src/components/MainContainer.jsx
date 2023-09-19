@@ -1,9 +1,9 @@
 import {Header} from "@/components/Header";
-import styles from "./../styles/mainContainer.module.css"
+
 
 const MainContainer = ({children, isAuthenticatedUser}) => {
     return (
-        <div className={styles.mainContainer}>
+        <div>
             <Header isAuthenticatedUser={isAuthenticatedUser}/>
             <div>
                 {children}
