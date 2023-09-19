@@ -9,7 +9,7 @@ export default async function handler(req, res) {
         const { id } = req.query;
 
         //// Поменять поля, если не совпадают с полями в монге:
-        const user = await req.db('ToDoListApp').collection('Users').findOne({ _id: ObjectId(id) }); 
+        const user = await client.db('ToDoListApp').collection('Users').findOne({ Nickname: id }); 
     
         if (!user) {
           return res.status(404).json({ message: 'User not found' });
@@ -17,6 +17,6 @@ export default async function handler(req, res) {
     
         return res.status(200).json(user);
       } catch (error) {
-        return res.status(500).json({ message: 'Internal server error' });
+        return res.status(500).json({ message: error.toString() });
       }
 }

@@ -9,7 +9,7 @@ export default async function handler(req, res) {
         const params = req.query.params;
         const nickname = params[0];
         const password = params[1];
-        const user_info = await req.db('ToDoListApp').collection('Users').findOne({ Nickname: nickname, Password: password });
+        const user_info = await client.db('ToDoListApp').collection('Users').findOne({ Nickname: nickname, Password: password });
     
         if (!user_info)
         {
@@ -23,6 +23,6 @@ export default async function handler(req, res) {
       }
       catch (error)
       {
-        return res.status(500).json({ message: 'Internal server error' });
+        return res.status(500).json({ message: error.toString() });
       }
 }
