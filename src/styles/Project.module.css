@@ -1,3 +1,7 @@
+.wrapper {
+    max-width: 1100px;
+}
+
 .switchType {
     display: flex;
     justify-content: center;

@@ -4,6 +4,13 @@
     padding: 15px 0;
 }
 
+
+.wrapper{
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 15px 0;
+}
+
 .info {
     display: flex;
     justify-content: space-between;
@@ -12,4 +19,25 @@
 
 a.logo.hover {
     cursor: pointer;
+}
+
+.menu{
+    position: absolute;
+    padding: 10px;
+    align-items: center;
+    border-radius: 12px;
+    background-color: #fff;
+    border: 1px solid black;
+    opacity: 0;
+    transform: translateY(-10px);
+    visibility: hidden;
+    transition: 0.3s;
+}
+.menu.active{
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+.menu__item{
+    font-size: 20px;
 }
