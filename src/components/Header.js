@@ -25,7 +25,10 @@ const Header = ({isAuthenticatedUser}) => {
                             </Link>
                             <FallOutMenu active={FallOutActive}>
                                 <div className={styles.menu__item}>
-                                    <Link href={"/settings"}>настройки</Link>
+                                    <Link href={"/profile"}>профиль</Link>
+                                </div>
+                                <div className={styles.menu__item}>
+                                    <Link href={"/user_settings"}>настройки</Link>
                                 </div>
                                 <div className={styles.menu__item}>
                                     <Link href={"/"}>Выйти</Link>
