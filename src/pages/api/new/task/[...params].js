@@ -1,0 +1,33 @@
+import { MongoClient } from 'mongodb';
+
+export default async function handler(req, res)
+{
+    const client = new MongoClient(process.env.MONGODB_URI);
+
+    try
+    {
+        await client.connect();
+        const params = req.query.params;
+        const doer = params[0];
+        const board = params[1];
+        const name = params[2];
+        const inserted = await client.db('ToDoListApp').collection('Tasks').insertOne({ Name: name, State: "", Doer: doer });
+    
+        if (!inserted)
+        {
+          return res.status(503).json({ message: 'Task adding error' });
+        }
+        else
+        {
+            return res.status(201).json({ message: 'New task added' });
+        } 
+    }
+      catch (error)
+    {
+        return res.status(500).json({ message: error.toString() });
+    }
+      finally
+    {
+        client.close();
+    }
+}
