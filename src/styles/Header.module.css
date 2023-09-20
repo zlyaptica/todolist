@@ -2,10 +2,6 @@
     margin-bottom: 20px;
 }
 
-.wrapper{
-    margin: 0 auto;
-}
-
 .info {
     display: flex;
     justify-content: space-between;
