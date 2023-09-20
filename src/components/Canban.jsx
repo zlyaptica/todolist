@@ -6,8 +6,8 @@ import {useState} from "react";
 const Canban = () => {
     const [boards, setBoards] = useState([
         { id: 1, title: "Сделать", tasks: [{ id: 1, title: "Удалить диаграммы Ганта" }, { id: 2, title: "Авторизацию" }] },
-        { id: 2, title: "В работе", tasks: [{ id: 3, title: "Доска Канбан" }, { id: 4, title: "Профиль" }] },
-        { id: 3, title: "Сделано", tasks: [{ id: 5, title: "Дизайн страниц" }, { id: 6, title: "База данных" }] }
+        { id: 2, title: "В работе", tasks: [{ id: 1, title: "Доска Канбан" }, { id: 2, title: "Профиль" }] },
+        { id: 3, title: "Сделано", tasks: [{ id: 1, title: "Дизайн страниц" }, { id: 2, title: "База данных" }] }
     ])
 
     const [currentBoard, setCurrentBoard] = useState(null)
@@ -32,7 +32,7 @@ const Canban = () => {
     function dragOverHandler(e) {
         e.preventDefault()
 
-        if (e.target.className == 'task') {
+        if (e.target.className === styles.task) {
             e.target.style.boxShadow = '0 4px 3px gray'
         }
     }
@@ -55,7 +55,7 @@ const Canban = () => {
         const currentIndex = currentBoard.tasks.indexOf(currentTask)
         currentBoard.tasks.splice(currentIndex, 1)
         const dropIndex = board.tasks.indexOf(task)
-        board.tasks.splice(dropIndex, 0, currentTask)
+        board.tasks.splice(dropIndex + 1, 0, currentTask)
         setBoards(boards.map(b => {
             if (b.id === board.id) {
                 return board
