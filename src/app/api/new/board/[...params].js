@@ -11,22 +11,17 @@ export default async function handler(req, res)
         const doer = params[0];
         const name = params[1];
         const inserted = await client.db('ToDoListApp').collection('Boards').insertOne({ Name: name, Tasks: {}, States: {}, Doers: {doer} });
-    
+        client.close();
+
         if (!inserted)
         {
-          return res.status(503).json({ message: 'Board adding error' });
+          return res.status(404).json({ message: 'Board adding error' });
         }
-        else
-        {
-            return res.status(201).json({ message: 'New board added' });
-        } 
+        return res.status(200).json({ message: 'New board added' });
+
     }
       catch (error)
     {
         return res.status(500).json({ message: error.toString() });
-    }
-      finally
-    {
-        client.close();
     }
 }

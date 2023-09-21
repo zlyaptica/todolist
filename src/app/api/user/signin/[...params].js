@@ -11,22 +11,17 @@ export default async function handler(req, res)
         const nickname = params[0];
         const password = params[1];
         const user_info = await client.db('ToDoListApp').collection('Users').findOne({ Nickname: nickname, Password: password });
-    
+        client.close();
+
         if (!user_info)
         {
-          return res.status(401).json({ message: 'There is no such user here' });
+          return res.status(404).json({ message: 'There is no such user here' });
         }
-        else
-        {
-            return res.status(302).json(user_info);
-        } 
+        return res.status(200).json(user_info);
+
     }
         catch (error)
     {
         return res.status(500).json({ message: error.toString() });
-    }
-      finally
-    {
-        client.close();
     }
 }
