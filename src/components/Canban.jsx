@@ -6,8 +6,8 @@ import {useState} from "react";
 const Canban = () => {
     const [boards, setBoards] = useState([
         { id: 1, title: "Сделать", tasks: [{ id: 1, title: "Удалить диаграммы Ганта" }, { id: 2, title: "Авторизацию" }] },
-        { id: 2, title: "В работе", tasks: [{ id: 1, title: "Доска Канбан" }, { id: 2, title: "Профиль" }] },
-        { id: 3, title: "Сделано", tasks: [{ id: 1, title: "Дизайн страниц" }, { id: 2, title: "База данных" }] }
+        { id: 2, title: "В работе", tasks: [{ id: 3, title: "Доска Канбан" }, { id: 4, title: "Профиль" }] },
+        { id: 3, title: "Сделано", tasks: [{ id: 5, title: "Дизайн страниц" }, { id: 6, title: "База данных" }] }
     ])
 
     const [currentBoard, setCurrentBoard] = useState(null)
@@ -72,6 +72,7 @@ const Canban = () => {
         <div className={styles.canban}>
             {boards.map(board =>
                 <div
+                    key={board.id}
                     onDragOver={(e) => dragOverHandler(e)}
                     onDrop={(e) => dropCardHandler(e, board)}
                     className={styles.board}
@@ -79,6 +80,7 @@ const Canban = () => {
                     <h2 className={styles.boardTitle}>{board.title}</h2>
                     {board.tasks.map(task =>
                         <div
+                            key={task.id}
                             draggable={true}
                             onDragOver={(e) => dragOverHandler(e)}
                             onDragLeave={(e) => dragLeaveHandler(e)}
