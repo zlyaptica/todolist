@@ -1,4 +1,5 @@
 'use client'
+
 import styles from "./../styles/Welcome.module.css"
 import Link from "next/link";
 import {Popup} from "@/components/Popup";

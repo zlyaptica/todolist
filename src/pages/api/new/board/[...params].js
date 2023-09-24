@@ -11,6 +11,9 @@ export default async function handler(req, res)
         const doer = params[0];
         const name = params[1];
         const inserted = await client.db('ToDoListApp').collection('Boards').insertOne({ Name: name, Tasks: {}, States: {}, Doers: {doer} });
+
+        //Updating user's (doer) Boards array:
+        const updated = await client.db('ToDoListApp').collection('Users').updateOne({ nickname: doer }, { $push: { Boards: inserted.insertedId } });
     
         if (!inserted)
         {
