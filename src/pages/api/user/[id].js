@@ -10,19 +10,16 @@ export default async function handler(req, res)
 
         const { id } = req.query;
 
-        //// Поменять поля, если не совпадают с полями в монге:
-        const user = await client.db('ToDoListApp').collection('Users').findOne({ Nickname: id }); 
-    
-        if (!user) {
-          return res.status(401).json({ message: 'User not found' });
-        }
-    
-        return res.status(302).json(user);
-    } catch (error) {
-        return res.status(500).json({ message: error.toString() });
-    }
-      finally
-    {
+        const user = await client.db('ToDoListApp').collection('Users').findOne({ nickname: id }); 
         client.close();
+
+        if (!user) {
+          return res.status(404).json({ message: 'User not found' });
+        }
+        return res.status(200).json(user); 
+    }
+    catch (error)
+    {
+        return res.status(500).json({ message: error.toString() });
     }
 }

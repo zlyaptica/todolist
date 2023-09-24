@@ -14,20 +14,14 @@ export default async function handler(req, res)
         const name = params[2];
 
         const board_id = new ObjectId(board);
-        const expandable_board = await client.db('ToDoListApp').collection('Boards').findOne({"_id": board_id});
-        const state = expandable_board.states[0];
         const caller = await client.db('ToDoListApp').collection('Users').findOne({ "nickname": doer });
         if (!caller.boards.includes(board)) return res.status(404).json({ message: 'Access not permitted' });
 
-        const inserted_task = await client.db('ToDoListApp').collection('Tasks').insertOne({ "name": name, "state": state, "doer": doer });
-        const added_to_board = await client.db('ToDoListApp').collection('Boards').updateOne({ "_id": board_id }, { $push: { "tasks": inserted_task.insertedId } })
+        const inserted = await client.db('ToDoListApp').collection('Boards').updateOne({ "_id": board_id}, { $push: { "states": name } });
         client.close();
 
-        if (!inserted_task)
-        {
-          return res.status(404).json({ message: 'Task adding error' });
-        }
-        return res.status(200).json({ message: 'New task added' });
+        if (!inserted) return res.status(404).json({ message: 'Binding error' });
+        return res.status(200).json({ message: 'New state added' });
     }
       catch (error)
     {
