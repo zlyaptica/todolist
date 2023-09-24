@@ -9,9 +9,15 @@ import {CreateProject} from "@/components/CreateProject";
 
 export default function Projects() {
     const [createProjectPopupActive, setCreateProjectPopupActive] = useState(false)
+    let my_projects = [
+        {name:"Проект 1"},
+        {name:"Проект 2"}
+    ]
+    let Project_elements = my_projects
+        .map(p => <div><Link href={"/project"}>{p.name}</Link></div>)
+
     return (
         <div>
-
             <div className={styles.projects}>
                 <h2 className={styles.myProjects}>МОИ ПРОЕКТЫ</h2>
                 <div onClick={() => setCreateProjectPopupActive(true)}>
@@ -20,7 +26,9 @@ export default function Projects() {
                     </Link>
                 </div>
             </div>
-            <Link href={"/project"}>Проект1</Link>
+            <div>
+                {Project_elements}
+            </div>
             <Popup active={createProjectPopupActive} setActive={setCreateProjectPopupActive}>
                 <CreateProject setCreateProjectPopupActive={setCreateProjectPopupActive}/>
             </Popup>

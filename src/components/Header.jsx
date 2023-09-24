@@ -27,9 +27,9 @@ const Header = ({isAuthenticatedUser}) => {
                                 <div className={styles.menu__item}>
                                     <Link href={"/profile"}>профиль</Link>
                                 </div>
-                                <div className={styles.menu__item}>
-                                    <Link href={"/user_settings"}>настройки</Link>
-                                </div>
+                                {/*<div className={styles.menu__item}>*/}
+                                {/*    <Link href={"/user_settings"}>настройки</Link>*/}
+                                {/*</div>*/}
                                 <div className={styles.menu__item}>
                                     <Link href={"/"}>Выйти</Link>
                                 </div>
