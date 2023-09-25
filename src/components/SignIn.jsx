@@ -6,17 +6,23 @@ import {useState} from 'react'
 const SignIn = ({setPopupSignInActive, setPopupSignUpActive}) => {
     const [nickName, setNickName] = useState('')
     const [password, setPassword] = useState('')
-    async function signIn(e) {
+    const signIn = async (e) =>{
         e.preventDefault()
         console.log(nickName)
-        let url = 'http://localhost:3000/api/user/signin/'+nickName+'/'+password
+        let url = `http://localhost:3000/api/user/check/${nickName}/${password}`
         let response= await fetch(url)
         let result
         if (response.status===302){
             result = await response.json()
             alert('Дарова ' + result.Name)
+            let userInfo = {
+                Name: result.Name,
+                Nickname: result.Nickname,
+                Password: result.Password,
+            }
             if (typeof window !== 'undefined') {
                 localStorage.setItem('isAuthenticatedUser', 'true')
+                localStorage.setItem("user",JSON.stringify(userInfo))
             }
             setPopupSignInActive(false)
         }else{
