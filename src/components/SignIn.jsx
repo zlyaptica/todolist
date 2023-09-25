@@ -9,16 +9,16 @@ const SignIn = ({setPopupSignInActive, setPopupSignUpActive}) => {
     const signIn = async (e) =>{
         e.preventDefault()
         console.log(nickName)
-        let url = `http://localhost:3000/api/user/check/${nickName}/${password}`
+        let url = `http://localhost:3000/api/user/signin/${nickName}/${password}`
         let response= await fetch(url)
         let result
-        if (response.status===302){
+        if (response.status===200){
             result = await response.json()
-            alert('Дарова ' + result.Name)
+            alert('Дарова ' + result.name)
             let userInfo = {
-                Name: result.Name,
-                Nickname: result.Nickname,
-                Password: result.Password,
+                Name: result.name,
+                Nickname: result.nickname,
+                Password: result.password,
             }
             if (typeof window !== 'undefined') {
                 localStorage.setItem('isAuthenticatedUser', 'true')

@@ -7,28 +7,21 @@ const SignUp = () => {
     const [password, setPassword] = useState('')
     const [Name, setName] = useState('')
 
-    const signUp = async (e) =>{
+    const signUp = async (e) => {
         e.preventDefault()
         console.log(Name)
         console.log(nickName)
         console.log(password)
-        let url= `http://localhost:3000/api/user/check/${nickName}/${password}`
+        let url = `http://localhost:3000/api/user/signup/${Name}/${nickName}/${password}`
         let response = await fetch(url)
-        if (response.status===401){
-            url = `http://localhost:3000/api/user/signup/${Name}/${nickName}/${password}`
-            response = await fetch(url)
-            let result
-            if (response.status===201){
-                result = await response.json()
-                alert('Successful sign up')
-
-
-            }else{
-                alert('Oops! User has not been added! This user already exists.')
-            }
-        }else{
-            alert('Oops! User has not been added!')
+        let result
+        if (response.status === 200) {
+            result = await response.json()
+            alert('Successful sign up')
+        } else {
+            alert('User has not been added')
         }
+        debugger
 
     }
     return (
@@ -42,7 +35,7 @@ const SignUp = () => {
                         type="text"
                         placeholder="Имя"
                         onChange={(e) => setName(e.target.value)}
-                        value = {Name}
+                        value={Name}
                     />
                     <input
                         className={styles.input}
