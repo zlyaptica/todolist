@@ -15,12 +15,14 @@ const SignIn = ({setPopupSignInActive, setPopupSignUpActive}) => {
         if (response.status===302){
             result = await response.json()
             alert('Дарова ' + result.Name)
+            if (typeof window !== 'undefined') {
+                localStorage.setItem('isAuthenticatedUser', 'true')
+            }
+            setPopupSignInActive(false)
         }else{
             alert('Ты кто? error:'+response.status)
         }
-
         debugger
-
     }
     const popupHandle = () => {
         setPopupSignInActive(false)

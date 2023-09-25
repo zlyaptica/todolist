@@ -1,10 +1,10 @@
 import {Header} from "@/components/Header";
 
 
-const MainContainer = ({children, isAuthenticatedUser}) => {
+const MainContainer = ({children}) => {
     return (
         <div>
-            <Header isAuthenticatedUser={isAuthenticatedUser}/>
+            <Header/>
             <div>
                 {children}
             </div>

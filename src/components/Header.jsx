@@ -17,7 +17,7 @@ const Header = ({isAuthenticatedUser}) => {
                     <Link href={"/"} className={styles.headerLink}>
                         <Image src={logo} alt={"logo"}/>
                     </Link>
-                    {isAuthenticatedUser
+                    {(typeof window !== 'undefined') &&(localStorage.getItem('isAuthenticatedUser') === 'true')
                         ?
                         <div>
                             <Link href={"/"} className={styles.headerLink} onClick={() => setFallOutActive(!FallOutActive)}>
@@ -36,7 +36,7 @@ const Header = ({isAuthenticatedUser}) => {
                             </FallOutMenu>
                         </div>
                         :
-                        <Link href={"/signin"} className={styles.navLink}>Войти</Link>
+                        <Link href={"/"} className={styles.navLink}></Link>
                     }
 
                 </div>
