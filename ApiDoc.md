@@ -12,7 +12,7 @@
 
 ## Добавление таска в доску
 
-***/api/new/task/[user_nickname]/[board_id]/[task_name]***
+***/api/new/task/[user_nickname]/[board_id]/[task_name]/[task_state]***
 
 ## Получение юзера по нику
 
