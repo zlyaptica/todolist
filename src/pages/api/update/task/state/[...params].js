@@ -18,11 +18,12 @@ export default async function handler(req, res)
 
         const board_info = await client.db('ToDoListApp').collection('Boards').findOne({ "_id": board_id });
         if (!board_info) return res.status(404).json({ message: 'Invalid board' });
-        const state_index = parseInt(state);
-        if (!state_index) return res.status(404).json({ message: 'Invalid state index' });
-        const task_state = board_info.states[state_index];
+        //const state_index = parseInt(state);
+        //if (!state_index) return res.status(404).json({ message: 'Invalid state index' });
+	if (!board_info.states.includes(state)) return res.status(404).json({ message: 'Invalid state index' });
+        //const task_state = board_info.states[state_index];
 
-        const inserted = await client.db('ToDoListApp').collection('Tasks').updateOne({ "_id": task_id }, { $set: { "state": task_state } });
+        const inserted = await client.db('ToDoListApp').collection('Tasks').updateOne({ "_id": task_id }, { $set: { "state": state } });
         client.close();
 
         if (!inserted)
