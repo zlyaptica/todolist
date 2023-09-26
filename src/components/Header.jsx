@@ -20,8 +20,8 @@ const Header = () => {
                     <Link href={"/"} className={styles.headerLink}>
                         <Image src={logo} alt={"logo"}/>
                     </Link>
-                    {(typeof window !== 'undefined') && (localStorage.getItem('isAuthenticatedUser') === 'true')
-                        ?
+                    {/*{(typeof window !== 'undefined') && (localStorage.getItem('isAuthenticatedUser') === 'true')*/}
+                    {/*    ?*/}
                         <div>
                             <Link href={"/"} className={styles.headerLink} onClick={() => setFallOutActive(!FallOutActive)}>
                                 <Image src={profileIco} alt={"profile ico"}/>
@@ -35,9 +35,9 @@ const Header = () => {
                                 </div>
                             </FallOutMenu>
                         </div>
-                        :
-                        <div></div>
-                    }
+                    {/*    :*/}
+                    {/*    <div></div>*/}
+                    {/*}*/}
 
                 </div>
 

@@ -11,6 +11,7 @@ const SignIn = ({setPopupSignInActive, setPopupSignUpActive}) => {
         console.log(nickName)
         let url = `http://localhost:3000/api/user/signin/${nickName}/${password}`
         let response = await fetch(url)
+        debugger
         let result
         if (response.status === 200) {
             result = await response.json()

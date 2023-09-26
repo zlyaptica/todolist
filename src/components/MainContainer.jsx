@@ -6,7 +6,7 @@ const MainContainer = ({children}) => {
     return (
         <div>
             <Header/>
-            <div className={styles.children}>
+            <div>
                 {children}
             </div>
         </div>

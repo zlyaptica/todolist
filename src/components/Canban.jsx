@@ -9,17 +9,17 @@ const Canban = ({tasks}) => {
     //     { id: 2, title: "В работе", tasks: [{ id: 3, title: "Доска Канбан" }, { id: 4, title: "Профиль" }] },
     //     { id: 3, title: "Сделано", tasks: [{ id: 5, title: "Дизайн страниц" }, { id: 6, title: "База данных" }] }
     // ])
-
+    // const states = ["To do", "In progress", "Done"]
+    let taskStates = []
     const groupByState = (arr) => {
         const stateGroups = {}
 
         arr.forEach(obj => {
             const state = obj.state
-
             if (!stateGroups[state]) {
                 stateGroups[state] = []
+                taskStates.push(state)
             }
-
             stateGroups[state].push(obj)
         })
 
@@ -27,17 +27,10 @@ const Canban = ({tasks}) => {
     }
     const boards = [groupByState(tasks)]
 
-    // let boards = []
 
 
-    // const boards = tasks.map(task => {
-    //     const stateItems = task.state.split(' ').map(state => state.trim())
-    //     return {
-    //         ...task,
-    //         stateItems: stateItems.join(' ')
-    //     }
-    // })
     console.log("sortedTasks", boards)
+    console.log("taskStates", taskStates)
     debugger
     const [currentBoard, setCurrentBoard] = useState(null)
     const [currentTask, setCurrentTask] = useState(null)
@@ -99,28 +92,23 @@ const Canban = ({tasks}) => {
 
     return (
         <div className={styles.canban}>
-            {/*{boards.map(board =>*/}
-            {/*    <div*/}
-            {/*        key={board.id}*/}
-            {/*        onDragOver={(e) => dragOverHandler(e)}*/}
-            {/*        onDrop={(e) => dropCardHandler(e, board)}*/}
-            {/*        className={styles.board}*/}
-            {/*    >*/}
-            {/*        <h2 className={styles.boardTitle}>{board.title}</h2>*/}
-            {/*        {board.tasks.map(task =>*/}
-            {/*            <div*/}
-            {/*                key={task.id}*/}
-            {/*                draggable={true}*/}
-            {/*                onDragOver={(e) => dragOverHandler(e)}*/}
-            {/*                onDragLeave={(e) => dragLeaveHandler(e)}*/}
-            {/*                onDragStart={(e) => dragStartHandler(e, board, task)}*/}
-            {/*                onDragEnd={(e) => dragEndHandler(e)}*/}
-            {/*                onDrop={(e) => dropHandler(e, board, task)}*/}
-            {/*                className={styles.task}*/}
-            {/*            >*/}
-            {/*                {task.title}*/}
-            {/*            </div>)}*/}
-            {/*    </div>)}*/}
+            {/*{states.map((state, index) => <div key={index} className={styles.board}>*/}
+            {/*    <h2 className={styles.boardTitle}>{state}</h2>*/}
+            {/*    {*/}
+            {/*        boards[0][index].map(board => <div key={board._id} className={styles.task}>*/}
+            {/*            {board.name}*/}
+            {/*        </div>)*/}
+            {/*    }*/}
+            {/*</div>)}*/}
+
+            {taskStates.map((taskState, index) => <div key={index} className={styles.board}>
+                <h2 className={styles.boardTitle}>{taskState}</h2>
+                {
+                    boards[0][index].map(board => <div key={board._id} className={styles.task}>
+                        {board.name}
+                    </div>)
+                }
+            </div>)}
         </div>
         // <div className={styles.canban}>
         //     {boards.map(board =>

@@ -8,10 +8,6 @@ import {CreateProject} from "@/components/CreateProject";
 import {MainContainer} from "@/components/MainContainer";
 import {useRouter} from "next/router";
 
-// export async function getServerSideProps(context) {
-//     const {nickname} = context.query
-//
-// }
 export default function Projects() {
     const router = useRouter()
     const {nickname} = router.query
@@ -30,6 +26,7 @@ export default function Projects() {
             })
         })
     }
+
     useEffect(() => {
         const getUserProjects = async (userBoards) => {
             const boards = []
@@ -40,6 +37,7 @@ export default function Projects() {
                 boards.push(await res.json())
             }
             setProjects(boards)
+            debugger
         }
         let user
         if (typeof window !== "undefined") {
