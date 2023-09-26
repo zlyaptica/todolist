@@ -39,7 +39,7 @@ const SignUp = () => {
                     />
                     <input
                         className={styles.input}
-                        name="email"
+                        name="nickName"
                         type="text"
                         placeholder="Почта"
                         onChange={(e) => setNickName(e.target.value)}

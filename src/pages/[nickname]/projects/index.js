@@ -37,7 +37,6 @@ export default function Projects() {
                 boards.push(await res.json())
             }
             setProjects(boards)
-            debugger
         }
         let user
         if (typeof window !== "undefined") {
@@ -56,9 +55,7 @@ export default function Projects() {
                     <div className={styles.projectsHeader}>
                         <h1 className={styles.myProjects}>МОИ ПРОЕКТЫ</h1>
                         <div onClick={() => setCreateProjectPopupActive(true)}>
-                            <Link href={"/"}>
-                                <Image width={30} height={30} src={createProject} alt={"to create project page"}/>
-                            </Link>
+                            <Image width={30} height={30} src={createProject} alt={"to create project page"}/>
                         </div>
                     </div>
                     {projects

@@ -8,20 +8,18 @@ const SignIn = ({setPopupSignInActive, setPopupSignUpActive}) => {
     const [password, setPassword] = useState('')
     const signInSubmit = async (e) => {
         e.preventDefault()
-        console.log(nickName)
         let url = `http://localhost:3000/api/user/signin/${nickName}/${password}`
         let response = await fetch(url)
-        debugger
         let result
         if (response.status === 200) {
             result = await response.json()
-            alert('Дарова ' + result.name)
+            alert('Добро пожаловать!' + result.name)
             if (typeof window !== 'undefined') {
                 localStorage.setItem('isAuthenticatedUser', 'true')
                 localStorage.setItem("user", JSON.stringify(result))
             }
         } else {
-            alert('Ты кто? error:' + response.status)
+            alert('Ошибка:' + response.status)
         }
     }
     const popupHandle = () => {
@@ -37,9 +35,9 @@ const SignIn = ({setPopupSignInActive, setPopupSignUpActive}) => {
                         <input
                             onChange={(e) => setNickName(e.target.value)}
                             className={styles.input}
-                            name="email"
+                            name="nickname"
                             type="text"
-                            placeholder="Почта"
+                            placeholder="Никнейм пользователя"
                             value={nickName}
                         />
                     </div>

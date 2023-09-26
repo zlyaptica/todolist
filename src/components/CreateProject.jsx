@@ -1,6 +1,6 @@
 import styles from "./../styles/CreateProject.module.css"
 import React from "react";
-const CreateProject = ({setCreateProjectPopupActive, createProjectSubmit}) => {
+const CreateProject = ({setCreateProjectPopupActive, setCreateProjectFormProjectName, createProjectSubmit}) => {
     return (
         <div className={styles.createProject}>
             <div className={styles.header}>Создать проект</div>

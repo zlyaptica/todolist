@@ -25,11 +25,11 @@ export default async function handler(req, res)
 
         if (!inserted_task)
         {
-          return res.status(404).json({ message: 'Task adding error' });
+            return res.status(404).json({ message: 'Task adding error' });
         }
         return res.status(200).json({ message: 'New task added' });
     }
-      catch (error)
+    catch (error)
     {
         return res.status(500).json({ message: error.toString() });
     }
