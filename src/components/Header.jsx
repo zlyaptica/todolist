@@ -8,8 +8,11 @@ import {useState} from "react";
 import {FallOutMenu} from "@/components/FallOutMenu";
 import classes from "@/styles/FallOutMenu.module.css";
 
-const Header = ({isAuthenticatedUser}) => {
+const Header = () => {
     const [FallOutActive, setFallOutActive] = useState(false)
+
+
+
     return (
         <div className={styles.header}>
             <div className="wrapper">
@@ -17,7 +20,7 @@ const Header = ({isAuthenticatedUser}) => {
                     <Link href={"/"} className={styles.headerLink}>
                         <Image src={logo} alt={"logo"}/>
                     </Link>
-                    {(typeof window !== 'undefined') &&(localStorage.getItem('isAuthenticatedUser') === 'true')
+                    {(typeof window !== 'undefined') && (localStorage.getItem('isAuthenticatedUser') === 'true')
                         ?
                         <div>
                             <Link href={"/"} className={styles.headerLink} onClick={() => setFallOutActive(!FallOutActive)}>
@@ -27,16 +30,13 @@ const Header = ({isAuthenticatedUser}) => {
                                 <div className={styles.menu__item}>
                                     <Link href={"/profile"}>профиль</Link>
                                 </div>
-                                {/*<div className={styles.menu__item}>*/}
-                                {/*    <Link href={"/user_settings"}>настройки</Link>*/}
-                                {/*</div>*/}
                                 <div className={styles.menu__item}>
                                     <Link href={"/"}>Выйти</Link>
                                 </div>
                             </FallOutMenu>
                         </div>
                         :
-                        <Link href={"/"} className={styles.navLink}></Link>
+                        <div></div>
                     }
 
                 </div>

@@ -6,29 +6,22 @@ import {useState} from 'react'
 const SignIn = ({setPopupSignInActive, setPopupSignUpActive}) => {
     const [nickName, setNickName] = useState('')
     const [password, setPassword] = useState('')
-    const signIn = async (e) =>{
+    const signInSubmit = async (e) => {
         e.preventDefault()
         console.log(nickName)
         let url = `http://localhost:3000/api/user/signin/${nickName}/${password}`
-        let response= await fetch(url)
+        let response = await fetch(url)
         let result
-        if (response.status===200){
+        if (response.status === 200) {
             result = await response.json()
             alert('Дарова ' + result.name)
-            let userInfo = {
-                Name: result.name,
-                Nickname: result.nickname,
-                Password: result.password,
-            }
             if (typeof window !== 'undefined') {
                 localStorage.setItem('isAuthenticatedUser', 'true')
-                localStorage.setItem("user",JSON.stringify(userInfo))
+                localStorage.setItem("user", JSON.stringify(result))
             }
-            setPopupSignInActive(false)
-        }else{
-            alert('Ты кто? error:'+response.status)
+        } else {
+            alert('Ты кто? error:' + response.status)
         }
-        debugger
     }
     const popupHandle = () => {
         setPopupSignInActive(false)
@@ -38,7 +31,7 @@ const SignIn = ({setPopupSignInActive, setPopupSignUpActive}) => {
         <div className={styles.signIn}>
             <div className={styles.wrapper}>
                 <div className={styles.header}>Войти</div>
-                <form onSubmit={signIn}>
+                <form onSubmit={signInSubmit}>
                     <div>
                         <input
                             onChange={(e) => setNickName(e.target.value)}
@@ -59,9 +52,6 @@ const SignIn = ({setPopupSignInActive, setPopupSignUpActive}) => {
                             required
                             value={password}
                         />
-                    </div>
-                    <div>
-                        <input className={styles.rememberMe} type="checkbox" /> Запомнить меня <br></br>
                     </div>
                     <div>
                         <button className={styles.signInButton}>Войти</button>

@@ -12,7 +12,7 @@ export default async function handler(req, res)
         const user = params[0];
         const board = params[1];
 
-        const board_id = new ObjectId(board);;
+        const board_id = new ObjectId(board);
 
 
         const caller = await client.db('ToDoListApp').collection('Users').findOne({ "nickname": user });
@@ -32,3 +32,27 @@ export default async function handler(req, res)
         return res.status(500).json({ message: error.toString() });
     }
 }
+
+// {
+//     [
+//         {id: 1, title: "test1", state: "to do"},
+//         {id: 2, title: "test2", state: "in progress"},
+//         {id: 4, title: "test4", state: "to do"},
+//         {id: 3, title: "test3", state: "done"},
+//     ]
+// }
+//
+// {
+//     [
+//         [
+//             {id: 1, title: "test1", state: "to do"},
+//             {id: 4, title: "test4", state: "to do"}
+//         ],
+//         [
+//             {id: 2, title: "test2", state: "in progress"},
+//         ],
+//         [
+//             {id: 3, title: "test3", state: "done"},
+//         ]
+//     ]
+// }

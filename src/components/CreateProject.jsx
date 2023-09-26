@@ -1,29 +1,18 @@
 import styles from "./../styles/CreateProject.module.css"
 import React from "react";
-const CreateProject = ({setCreateProjectPopupActive}) => {
-    const createProject = () => {
-        console.log("create")
-    }
-
-    const popupHandle = () => {
-        setCreateProjectPopupActive(true)
-    }
+const CreateProject = ({setCreateProjectPopupActive, createProjectSubmit}) => {
     return (
         <div className={styles.createProject}>
-            <div className={styles.wrapper}>
-                <div className={styles.header}>Войти</div>
-                <form onSubmit={createProject}>
-                    <div>
-                        <input className={styles.formInput} type="text" name="projectName" placeholder="Название проекта"/>
-                    </div>
-                    <div>
-                        <input className={styles.formInput} type="text" name="friends" placeholder="Участники проекта"/>
-                    </div>
-                    <div>
-                        <button onClick={() => popupHandle()}>Создать</button>
-                    </div>
-                </form>
-            </div>
+            <div className={styles.header}>Создать проект</div>
+            <form onSubmit={createProjectSubmit}>
+                <div>
+                    <input className={styles.formInput} type="text" name="projectName" placeholder="Название проекта"
+                           onChange={(e) => setCreateProjectFormProjectName(e.target.value)}/>
+                </div>
+                <div>
+                    <button type="submit" onClick={() => setCreateProjectPopupActive(false)}>Создать</button>
+                </div>
+            </form>
         </div>
     )
 }

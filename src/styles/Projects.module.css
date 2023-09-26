@@ -1,4 +1,8 @@
-.projects {
+/*.projects {*/
+/*    padding-left: 40px;*/
+/*}*/
+
+.projectsHeader {
     display: flex;
     align-items: center;
 }

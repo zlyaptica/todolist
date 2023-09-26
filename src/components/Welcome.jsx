@@ -6,10 +6,12 @@ import {Popup} from "@/components/Popup";
 import {SignIn} from "@/components/SignIn";
 import {SignUp} from "@/components/SignUp";
 import {useState} from "react";
+import {useRouter} from "next/navigation";
 
 export default function Welcome() {
     const [SignInPopupActive, setSignInPopupActive] = useState(false)
     const [SignUpPopupActive, setPopupSignUpActive] = useState(false)
+
 
     return (
         <main className={styles.main}>

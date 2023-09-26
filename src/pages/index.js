@@ -1,25 +1,31 @@
+'use client'
+
 import {MainContainer} from "@/components/MainContainer";
 import Welcome from "@/components/Welcome";
-import Projects from "@/components/Projects";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+import {useRouter} from "next/navigation";
+
 export default function Home() {
-    const isAuthenticatedUser = false
+    const router = useRouter()
+    const [isAuthenticatedUser, setIsAuthenticatedUser] = useState(false)
+    const [user, setUserData] = useState(null)
 
-    if (typeof window !== 'undefined') {
-        localStorage.setItem('name', 'Denis')
-        localStorage.setItem('isAuthenticatedUser', 'false')
-        console.log("create!")
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const value = JSON.parse(localStorage.getItem('isAuthenticatedUser'))
+            const userData = JSON.parse(localStorage.getItem('user'))
+            setUserData(userData)
+            if (value) {
+                setIsAuthenticatedUser(true)
+            }
+        }
+    }, []);
+    if (isAuthenticatedUser) {
+        router.push(`/${user.nickname}/projects`)
     }
-
     return (
         <MainContainer>
-
-            {(typeof window !== 'undefined') &&(localStorage.getItem('isAuthenticatedUser') === 'true')
-                ?
-                <Projects/>
-                :
-                <Welcome/>
-            }
+            <Welcome/>
         </MainContainer>
     )
 }
