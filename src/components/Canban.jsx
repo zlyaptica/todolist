@@ -10,17 +10,25 @@ const Canban = ({tasks}) => {
     //     { id: 3, title: "Сделано", tasks: [{ id: 5, title: "Дизайн страниц" }, { id: 6, title: "База данных" }] }
     // ])
 
-    let boards = []
-    boards = tasks.reduce((accumulator, currentValue) => {
-        if (currentValue === undefined || currentValue === null) {
-            return accumulator;
-        }
-        const stateItems = currentValue.state.split(' ').map(state => state.trim());
-        return {
-            ...accumulator,
-            stateItems: stateItems.join(' ')
-        };
-    }, {});
+    const groupByState = (arr) => {
+        const stateGroups = {}
+
+        arr.forEach(obj => {
+            const state = obj.state
+
+            if (!stateGroups[state]) {
+                stateGroups[state] = []
+            }
+
+            stateGroups[state].push(obj)
+        })
+
+        return Object.values(stateGroups)
+    }
+    const boards = [groupByState(tasks)]
+
+    // let boards = []
+
 
     // const boards = tasks.map(task => {
     //     const stateItems = task.state.split(' ').map(state => state.trim())
