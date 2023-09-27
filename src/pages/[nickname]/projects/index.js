@@ -18,13 +18,7 @@ export default function Projects() {
 
     const createProjectSubmit = async (e) => {
         e.preventDefault()
-        await fetch('api/new/board', {
-            method: 'POST',
-            body: JSON.stringify({
-                doer: userInfo.nickname,
-                name: createProjectFormProjectName
-            })
-        })
+        await fetch(`api/new/board/${userInfo.nickname}/${createProjectFormProjectName}`)
     }
 
     useEffect(() => {
@@ -41,7 +35,6 @@ export default function Projects() {
         let user
         if (typeof window !== "undefined") {
             user = JSON.parse(localStorage.getItem("user"))
-            console.log("user", user)
             setUserInfo(user)
         }
         getUserProjects(user.boards)

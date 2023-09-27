@@ -2,6 +2,8 @@
 
 import styles from "./../styles/Canban.module.css"
 import {useState} from "react";
+import Rubbish from "./../../public/Rubbish.png"
+import Image from "next/image";
 
 const Canban = ({id, tasks}) => {
 
@@ -16,10 +18,8 @@ const Canban = ({id, tasks}) => {
         if (!(stateIndex === -1)) {
             states[stateIndex].tasks.push(tasks[i])
         }
-
     }
 
-    const [currentBoard, setCurrentBoard] = useState(null)
     const [currentTask, setCurrentTask] = useState(null)
 
     const updateTaskState = async (state) => {
@@ -29,8 +29,6 @@ const Canban = ({id, tasks}) => {
 
     async function dropCardHandler(e, board) {
         await updateTaskState(board.title)
-        // const URL = `http://localhost:3000/api/update/task/state/${id}/${currentTask._id}/${board.title}`
-        // await fetch(URL)
     }
     function dragOverHandler(e) {
         e.preventDefault()
@@ -43,7 +41,6 @@ const Canban = ({id, tasks}) => {
         e.target.style.boxShadow = 'none'
     }
     function dragStartHandler(e, board, task) {
-        setCurrentBoard(board)
         setCurrentTask(task)
     }
     function dragEndHandler(e) {

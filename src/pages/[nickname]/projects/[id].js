@@ -29,10 +29,8 @@ export default function Project({nickname, id, tasks, boardName}) {
 
     const [taskName, setTaskName] = useState('')
     const createTaskSubmit = async () => {
-
         let URL = `http://localhost:3000/api/new/task/${nickname}/${id}/${taskName}`
         await fetch(URL)
-
     }
     useEffect(() => {
         if (typeof window !== "undefined") {
@@ -40,7 +38,6 @@ export default function Project({nickname, id, tasks, boardName}) {
                 router.push('/')
             }
         }
-
     }, []);
 
     return (
@@ -49,15 +46,15 @@ export default function Project({nickname, id, tasks, boardName}) {
                 <div className={styles.boardHeader}>
                     <h1>{boardName}</h1>
                 </div>
-                    <form onSubmit={createTaskSubmit} className={styles.newTaskForm}>
-                        <input onChange={(e) => setTaskName(e.target.value)}
-                               name="taskName"
-                               type="text"
-                               placeholder="Названия таска"
-                               required
-                               value={taskName}/>
-                        <button>Создать</button>
-                    </form>
+                <form onSubmit={createTaskSubmit} className={styles.newTaskForm}>
+                    <input onChange={(e) => setTaskName(e.target.value)}
+                           name="taskName"
+                           type="text"
+                           placeholder="Названия таска"
+                           required
+                           value={taskName}/>
+                    <button>Создать</button>
+                </form>
                 <Canban id={id} tasks={tasks}/>
             </div>
         </MainContainer>

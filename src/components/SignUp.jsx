@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import styles from '../styles/SignUp.module.css'
 
-
 const SignUp = () => {
     const [nickName, setNickName] = useState('')
     const [password, setPassword] = useState('')
@@ -9,20 +8,15 @@ const SignUp = () => {
 
     const signUp = async (e) => {
         e.preventDefault()
-        console.log(Name)
-        console.log(nickName)
-        console.log(password)
         let url = `http://localhost:3000/api/user/signup/${Name}/${nickName}/${password}`
         let response = await fetch(url)
         let result
         if (response.status === 200) {
             result = await response.json()
-            alert('Successful sign up')
+            alert('Регистрация прошла успешно')
         } else {
-            alert('User has not been added')
+            alert('Пользователь не был создан')
         }
-        debugger
-
     }
     return (
         <div className={styles.signUp}>
@@ -41,7 +35,7 @@ const SignUp = () => {
                         className={styles.input}
                         name="nickName"
                         type="text"
-                        placeholder="Почта"
+                        placeholder="Никнейм"
                         onChange={(e) => setNickName(e.target.value)}
                         value={nickName}
                     />

@@ -12,16 +12,13 @@ export default async function handler(req, res)
         const doer = params[0];
         const board = params[1];
         const name = params[2];
-        const state = params[3];
 
         const board_id = new ObjectId(board);
         const expandable_board = await client.db('ToDoListApp').collection('Boards').findOne({"_id": board_id});
-        if (!expandable_board.status.includes(state)) return res.status(404).json({ message: 'Invalid state' });
-        //const state = expandable_board.states[0];
         const caller = await client.db('ToDoListApp').collection('Users').findOne({ "nickname": doer });
         if (!caller.boards.includes(board)) return res.status(404).json({ message: 'Access not permitted' });
 
-        const inserted_task = await client.db('ToDoListApp').collection('Tasks').insertOne({ "name": name, "state": state, "doer": doer });
+        const inserted_task = await client.db('ToDoListApp').collection('Tasks').insertOne({ "name": name, "state": "Сделать", "doer": doer });
         const added_to_board = await client.db('ToDoListApp').collection('Boards').updateOne({ "_id": board_id }, { $push: { "tasks": inserted_task.insertedId } })
         client.close();
 

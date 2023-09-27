@@ -30,4 +30,13 @@
     cursor: grab;
     background-color: rgba(84, 152, 255, 0.1);
     box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.deleteTaskButton {
+    cursor: pointer;
+    background: none;
+    border: none;
 }

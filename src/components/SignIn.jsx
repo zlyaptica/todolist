@@ -1,4 +1,5 @@
 'use client'
+
 import React from 'react'
 import styles from '../styles/Signin.module.css'
 import {useState} from 'react'
@@ -13,7 +14,7 @@ const SignIn = ({setPopupSignInActive, setPopupSignUpActive}) => {
         let result
         if (response.status === 200) {
             result = await response.json()
-            alert('Добро пожаловать!' + result.name)
+            alert('Добро пожаловать, ' + result.name + '!')
             if (typeof window !== 'undefined') {
                 localStorage.setItem('isAuthenticatedUser', 'true')
                 localStorage.setItem("user", JSON.stringify(result))
