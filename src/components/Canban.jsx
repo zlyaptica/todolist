@@ -24,10 +24,12 @@ const Canban = ({id, tasks}) => {
 
     const updateTaskState = async (state) => {
         const URL = `http://localhost:3000/api/update/task/state/${id}/${currentTask._id}/${state}`
+        debugger
         await fetch(URL)
     }
 
     async function dropCardHandler(e, board) {
+        debugger
         await updateTaskState(board.title)
     }
     function dragOverHandler(e) {

@@ -17,8 +17,9 @@ export default function Projects() {
     const [createProjectFormProjectName, setCreateProjectFormProjectName] = useState(null)
 
     const createProjectSubmit = async (e) => {
+        console.log("create")
         e.preventDefault()
-        await fetch(`api/new/board/${userInfo.nickname}/${createProjectFormProjectName}`)
+        await fetch(`http://localhost:3000/api/new/board/${userInfo.nickname}/${createProjectFormProjectName}`)
     }
 
     useEffect(() => {

@@ -10,7 +10,7 @@ export default async function handler(req, res)
         const params = req.query.params;
         const doer = params[0];
         const name = params[1];
-        const inserted = await client.db('ToDoListApp').collection('Boards').insertOne({ "name": name, "tasks": [], "states": [], "doers": [doer] });
+        const inserted = await client.db('ToDoListApp').collection('Boards').insertOne({ "name": name, "tasks": [], "states": ["Сделать", "Делается", "Сделано"], "doers": [doer] });
         const updated = await client.db('ToDoListApp').collection('Users').updateOne({ "nickname": doer }, { $push: { "boards": inserted.insertedId.toString() } });
         client.close();
 
